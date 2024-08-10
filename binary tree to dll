@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    void recursion(Node*root,Node* &head,Node* &prev){
+        if(root==NULL){
+            return;
+        }
+        recursion(root->left,head,prev);
+        if(prev==NULL){
+         head=root;
+         head->left=NULL;
+        }
+        else{
+            root->left=prev;
+            prev->right=root;
+        }
+        prev=root;
+       recursion(root->right,head,prev);
+       
+    }
+    Node* bToDLL(Node* root) {
+         Node*head=NULL;
+         Node*prev=NULL;
+        recursion(root,head,prev);
+        return head;
+        
+    }
+};
